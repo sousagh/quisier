@@ -1,20 +1,24 @@
 import React, {PropTypes} from 'react'
+import { Menu } from 'semantic-ui-react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link, withRouter
+} from 'react-router-dom'
+import TopMenuItem from './TopMenuItem'
 
-const MenuView = ({ items, child} ) => (
-  <ul>
-    {items.map(item =>
-      <li key={item.toString()}>
-            <a href="/">{item}</a>
-      </li>
-    )}
-    <child/>
+const MenuView = withRouter(({ history}) => (
+      <Menu pointing secondary>
+        <TopMenuItem name='Quisier' url='/' historyObj={history} isActive={false} />
+        <TopMenuItem name='About' url='/about' historyObj={history} isActive={false} />
 
-  </ul>
-)
+        <Menu.Menu position='right'>
+          <TopMenuItem name='Login' url='/login' historyObj={history} isActive={false} />
+          <TopMenuItem name='Sign up' url='/signup' historyObj={history} isActive={false} />
+        </Menu.Menu>
+      </Menu>
 
-MenuView.propTypes = {
-  items: PropTypes.arrayOf(PropTypes.string).isRequired,
-  child: PropTypes.func.isRequired
-}
+))  
+
 
 export default MenuView
