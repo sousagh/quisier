@@ -1,11 +1,17 @@
 import routingReducer from './routingReducer'
+import signupReducer from './signupReducer'
+import messagesReducer from './messagesReducer'
 
-export default function reducerApp(state = {}, action) {
+const initialState = {
+}
+
+export default function reducerApp(state = initialState, action) {
 
     var newState = {
-        route: routingReducer(state, action)
-    };
-    console.log('state!');
-    console.log(newState);
+        route: routingReducer(state, action),
+        signup: signupReducer(state, action),
+        messages: messagesReducer(state.messages, action)
+    }
+    
     return newState;
 }

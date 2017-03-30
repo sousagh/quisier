@@ -11,8 +11,11 @@ import {
 } from 'react-router-dom'
 
 import { createStore, combineReducers, applyMiddleware } from 'redux'
+import thunkMiddleware from 'redux-thunk'
+import { createLogger } from 'redux-logger'
 
 const history = createHistory()
+const loggerMiddleware = createLogger()
 
 // Build the middleware for intercepting and dispatching navigation actions
 const middleware = routerMiddleware(history)
@@ -26,7 +29,11 @@ const store = createStore(
     reducers,
     router: routerReducer
   }),
-  applyMiddleware(middleware)
+  applyMiddleware(
+    middleware, 
+    thunkMiddleware, // lets us dispatch() functions
+    loggerMiddleware // neat middleware that logs actions
+    )
 )
 
 import App from './App.jsx';

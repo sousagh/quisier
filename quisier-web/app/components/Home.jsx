@@ -1,5 +1,4 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
 import { Header, Icon, Container, Grid } from 'semantic-ui-react'
 
 const Home = ({ match }) => (
