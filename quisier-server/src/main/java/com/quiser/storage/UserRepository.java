@@ -1,5 +1,6 @@
 package com.quiser.storage;
 
+import com.quiser.business.LoginInfo;
 import com.quiser.business.UserInfo;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
@@ -10,5 +11,5 @@ import java.util.List;
  */
 public interface UserRepository extends MongoRepository<UserInfo, String> {
     public UserInfo findById(String id);
-    public List<UserInfo> findByEmail(String email);
+//    public List<LoginInfo> findByEmail(String email);
 }
