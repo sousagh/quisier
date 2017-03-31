@@ -9,26 +9,26 @@ public class UserInfo {
     private String firstName;
     @Getter
     private String lastName;
-//    private String email;
-//    private String password;
     @Getter
-    private LoginInfo loginInfo;
+    private String email;
+    @Getter
+    private String password;
     @Getter
     private UserType userType;
     private UserInfo() {
 
     }
-    public UserInfo(String firstName, String lastName, LoginInfo loginInfo ,UserType userType) {
+    public UserInfo(String firstName, String lastName, String email, String password, UserType userType) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.loginInfo = loginInfo;
+        this.email = email;
+        this.password = password;
         this.userType = userType;
     }
-
     @Override
     public String toString() {
         return String.format(
                 "User [id=%s, Name='%s', e-mail='%s', password='%s']",
-                id, firstName + lastName, loginInfo.getEmail(), loginInfo.getPassword());
+                id, firstName + lastName, email, password);
     }
 }

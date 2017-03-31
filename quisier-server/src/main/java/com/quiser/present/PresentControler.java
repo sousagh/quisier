@@ -5,6 +5,8 @@ import com.quiser.storage.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Optional;
+
 /**
  * Created by yf_zh on 3/28/2017.
  */
@@ -13,21 +15,22 @@ public class PresentControler {
     @Autowired
     private UserRepository repository;
 
-//    @GetMapping("/application")
-//    public String applicationForm(Model model) {
-//        model.addAttribute("userInfo", new UserInfo());
-//        return "userInfo";
-//    }
+
     @PostMapping("/application")
-    public UserInfo applicationSubmit(@RequestBody UserInfo userInfo) {
-        repository.save(userInfo);
-        // fetch all customers
-        System.out.println("Customers found with findAll():");
-        System.out.println("-------------------------------");
-        for (UserInfo userInfoshow : repository.findAll()) {
-            System.out.println(userInfoshow);
+    public Response applicationSubmit(@RequestBody UserInfo userInfo) {
+
+
+        String email = userInfo.getEmail();
+        Optional<UserInfo> result = Optional.ofNullable(repository.findByEmail(email));
+        if(result.isPresent()) {
+            Response response = new FalseResponse(false,
+                    "User with email sousagh@gmail.com already exists");
+            return response;
         }
-        return userInfo;
+        repository.save(userInfo);
+        Response response = new TrueResponse(true, userInfo);
+        return response;
+
     }
 
 
