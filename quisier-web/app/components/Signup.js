@@ -7,7 +7,6 @@ const Signup = ({ userType, onChangeType, onSubmitSignUp }) => {
 
 let firstName, lastName, email, password, confPassword, type
 
-
 return (
   <Container text>
     <Header as='h2'>Sign up</Header>
@@ -49,6 +48,7 @@ return (
           password: password.value,
           confPassword: confPassword.value
         }
+
         onSubmitSignUp(userData)
         }} >Submit</Button>
     </Form>

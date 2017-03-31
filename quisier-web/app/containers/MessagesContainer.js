@@ -8,7 +8,7 @@ const mapStateToProps = (state, ownProps) => {
   return {
     errors: reducers.messages.errors,
     warnings: new Array(),
-    infos: new Array()
+    info: reducers.messages.info
   }
 }
 

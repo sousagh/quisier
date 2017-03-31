@@ -1,14 +1,18 @@
 import { CHANGE_USER_TYPE } from '../constants/actionTypes'
 
-export default function routingReducer(state, action) {
+const initialState = { 
+    userType: 'student'
+}
+
+export default function routingReducer(state = initialState, action) {
 
     switch (action.type) {
 
         case CHANGE_USER_TYPE:
-            return Object.assign(state.signup, {userType :action.userType} )
+            return Object.assign(state, {userType :action.userType} )
             
         default:
-            return { userType: 'student'}
+            return state
 
     }
 }

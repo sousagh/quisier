@@ -1,9 +1,9 @@
-import { ERROR_MESSAGE, CLEAR_ERRORS } from '../constants/actionTypes'
+import { ERROR_MESSAGE, CLEAR_ERRORS, INFO_MESSAGE} from '../constants/actionTypes'
 
 const initialState = { 
     errors:[],
     warnings: [],
-    infos:[]
+    info: ''
 }
 
 export default function messagesReducer(state = initialState, action) {
@@ -14,7 +14,10 @@ export default function messagesReducer(state = initialState, action) {
             return Object.assign({}, state, {errors: action.messages} )
 
         case CLEAR_ERRORS:
-            return Object.assign({}, state, {errors: [] } )
+            return Object.assign({}, state, initialState)
+        
+        case INFO_MESSAGE:
+             return Object.assign({}, state, {info: action.text} )
             
         default:
             return state

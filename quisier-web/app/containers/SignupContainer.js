@@ -11,12 +11,13 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
+  console.log(ownProps)
   return {
     onChangeType: (type) => {
       dispatch(changeUserType(type))
     },
     onSubmitSignUp: (userData) => {
-      dispatch( submitSignUp(userData) )
+      dispatch( submitSignUp(userData, ownProps.history) )
     }
   }
 }

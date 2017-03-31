@@ -23,6 +23,7 @@ let App = ({ match }) => (
      <MenuView/>
   
       <Route exact path={'/'} component={Home} />
+      <Route exact path={'/login'} component={Login} />
       <Route exact path={'/about'} component={About} />
       <Route exact path={'/create'} component={CreateQuestion} />
       <Route exact path={'/signup'} component={SignupContainer} />
