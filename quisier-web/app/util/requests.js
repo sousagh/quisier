@@ -10,7 +10,7 @@ export const sendPost = (path, payload, onData, onError) =>{
 var options = {
   hostname: servicesHostName,
   port: servicesPort,
-  path: path,
+  path: '/api' + path,
   method: 'POST',
   headers: jsonHeader
 }

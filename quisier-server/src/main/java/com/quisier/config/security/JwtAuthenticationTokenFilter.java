@@ -1,45 +1,56 @@
 package com.quisier.config.security;
 
-import com.quisier.config.WebSecurityConfig;
-import com.quisier.config.security.jwt.JwtAuthenticationToken;
-import com.quisier.config.security.jwt.RawAccessJwtToken;
-import com.quisier.config.security.jwt.TokenExtractor;
+import com.quisier.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContext;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
-import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by gustavosousa on 4/1/17.
+ * Created by gustavosousa on 4/2/17.
  */
-public class JwtTokenAuthenticationProcessingFilter extends AbstractAuthenticationProcessingFilter {
-    private final AuthenticationFailureHandler failureHandler;
-    private final TokenExtractor tokenExtractor;
+public class JwtAuthenticationTokenFilter extends AbstractAuthenticationProcessingFilter {
+
+    private final MyAuthenticationFailureHandler failureHandler;
 
     @Autowired
-    public JwtTokenAuthenticationProcessingFilter(AuthenticationFailureHandler failureHandler,
-                                                  TokenExtractor tokenExtractor, RequestMatcher matcher) {
+    private UserDetailsService userDetailsService;
+
+
+    private JwtTokenUtil jwtTokenUtil;
+
+    @Value("Authorization")
+    private String tokenHeader;
+
+    public JwtAuthenticationTokenFilter(RequestMatcher matcher, MyAuthenticationFailureHandler myAuthenticationFailureHandler) {
+
         super(matcher);
-        this.failureHandler = failureHandler;
-        this.tokenExtractor = tokenExtractor;
+        this.failureHandler = myAuthenticationFailureHandler;
     }
 
+
     @Override
-    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
-            throws AuthenticationException, IOException, ServletException {
-        String tokenPayload = request.getHeader(WebSecurityConfig.JWT_TOKEN_HEADER_PARAM);
-        RawAccessJwtToken token = new RawAccessJwtToken(tokenExtractor.extract(tokenPayload));
-        return getAuthenticationManager().authenticate(new JwtAuthenticationToken(token));
+    public Authentication attemptAuthentication(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse) throws AuthenticationException, IOException, ServletException {
+
+        String authToken = httpServletRequest.getHeader(tokenHeader);
+        return getAuthenticationManager().authenticate(new MyAuthorization(authToken.replace("Bearer ", "")) );
     }
 
     @Override

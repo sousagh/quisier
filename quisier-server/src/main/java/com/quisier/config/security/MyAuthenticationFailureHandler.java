@@ -1,10 +1,12 @@
 package com.quisier.config.security;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.quisier.domain.ErrorCode;
-import com.quisier.domain.ErrorResponse;
 import com.quisier.config.security.exception.AuthMethodNotSupportedException;
+import com.quisier.config.security.exception.ErrorCode;
+import com.quisier.config.security.exception.ErrorResponse;
 import com.quisier.config.security.exception.JwtExpiredTokenException;
+
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,14 +21,14 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * Created by gustavosousa on 4/1/17.
+ * Created by gustavosousa on 4/2/17.
  */
 @Component
-public class AjaxAwareAuthenticationFailureHandler implements AuthenticationFailureHandler {
+public class MyAuthenticationFailureHandler  implements AuthenticationFailureHandler {
     private final ObjectMapper mapper;
 
     @Autowired
-    public AjaxAwareAuthenticationFailureHandler(ObjectMapper mapper) {
+    public MyAuthenticationFailureHandler(ObjectMapper mapper) {
         this.mapper = mapper;
     }
 

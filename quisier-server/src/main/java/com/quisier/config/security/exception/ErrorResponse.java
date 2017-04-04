@@ -1,11 +1,11 @@
-package com.quisier.domain;
+package com.quisier.config.security.exception;
 
 import org.springframework.http.HttpStatus;
 
 import java.util.Date;
 
 /**
- * Created by gustavosousa on 4/1/17.
+ * Created by gustavosousa on 4/2/17.
  */
 public class ErrorResponse {
     // HTTP Response Status Code

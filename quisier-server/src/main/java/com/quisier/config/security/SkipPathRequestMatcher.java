@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
  * Created by gustavosousa on 4/1/17.
  */
 public class SkipPathRequestMatcher implements RequestMatcher {
+
     private OrRequestMatcher matchers;
     private RequestMatcher processingMatcher;
 

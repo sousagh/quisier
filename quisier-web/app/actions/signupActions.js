@@ -20,7 +20,7 @@ export function submitSignUp(userData, history) {
         } else {
             dispatch(clearErrorMessages())
 
-            sendPost('/user/create', userData, 
+            sendPost('/auth/signup', userData, 
                 function (response) {
                     if(response.success){
                         dispatch(showMessage('User successfully created!'))

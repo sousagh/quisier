@@ -1,7 +1,7 @@
-package com.quisier.domain;
+package com.quisier.config.security.exception;
 
 /**
- * Created by gustavosousa on 4/1/17.
+ * Created by gustavosousa on 4/2/17.
  */
 public enum ErrorCode {
     GLOBAL(2),
@@ -13,6 +13,7 @@ public enum ErrorCode {
     private ErrorCode(int errorCode) {
         this.errorCode = errorCode;
     }
+
 
     public int getErrorCode() {
         return errorCode;

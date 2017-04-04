@@ -27,8 +27,8 @@ return (
       <Form.Field>
         <Form.Group inline ref={node => { type = node }}>
           <label>User type</label>
-          <Form.Radio label='Student' value='student' onChange={() => onChangeType('student') } checked={userType === 'student'}/>
-          <Form.Radio label='Teacher' value='teacher' onChange={() => onChangeType('teacher') }  checked={userType === 'teacher'}/>
+          <Form.Radio label='Student' value='STUDENT' onChange={() => onChangeType('STUDENT') } checked={userType === 'STUDENT'}/>
+          <Form.Radio label='Teacher' value='TEACHER' onChange={() => onChangeType('TEACHER') }  checked={userType === 'TEACHER'}/>
         </Form.Group>
         <label>Password</label>
         <input type='password' placeholder='Password' ref={node => { password = node }}/>
