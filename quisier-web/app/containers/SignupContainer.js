@@ -11,7 +11,6 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch, ownProps) => {
-  console.log(ownProps)
   return {
     onChangeType: (type) => {
       dispatch(changeUserType(type))

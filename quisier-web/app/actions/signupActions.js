@@ -34,7 +34,6 @@ export function submitSignUp(userData, history) {
                 }
                 ,function(e) {
                     dispatch(showErrorMessage(['Internal Server Error: ' + e.message]))
-                    console.log('problem with request: ' + e.message);
                 })
             }
     }

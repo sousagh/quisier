@@ -3,8 +3,6 @@ import { Message , Divider, Container} from 'semantic-ui-react'
 
 const Messages = (messages) => {
 
-    console.log(messages)
-
     let myMessages = new Array()
     if(messages.errors.length > 0){
         myMessages.push(
